@@ -1,0 +1,29 @@
+form{
+    margin: 1em;
+}
+.mensagem{
+    background-color: burlywood;
+    border: solid 1px red;
+}
+table,td,th{
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+nav{
+    margin-bottom: 1em;
+}
+.oculto{
+    display: none;
+}
+.modal{
+    position: absolute;
+    background-color: burlywood;
+    border: black 5px outset;
+    z-index: 1;
+}
+.modal input{
+    margin: 0.5em;
+}
+.modal label{
+    margin-left: 0.5em;
+}
