@@ -16,24 +16,23 @@ public class Cadastrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
-        String telefone = request.getParameter("telefone");
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
         boolean isAdmin = Boolean.parseBoolean(request.getParameter("isAdmin"));
 
-        if(nome!=null && telefone!=null && login!=null && senha!=null &&
-                !nome.isBlank() && !telefone.isBlank()&& !login.isBlank() && !senha.isBlank()) {
+        if(nome!=null && login!=null && senha!=null &&
+                !nome.isBlank() && !login.isBlank() && !senha.isBlank()) {
 
-            Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuarios");
+            Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuariosContextoApp");
             boolean existe = false;
             for (Usuario usuario : usuarios) {
-                if (usuario.getLogin().equals(login) && usuario.isAdmin()) {
+                if (usuario.getLogin().equals(login)) {
                     existe = true;
                     break;
                 }
             }
             if (!existe) {
-                Usuario u = new Usuario(pegaNovoId(), nome, telefone, login, senha, isAdmin);
+                Usuario u = new Usuario(pegaNovoId(), nome, login, senha, isAdmin);
                 usuarios.add(u);
                 response.sendRedirect("index.jsp?mensagem="+ URLEncoder.encode("Cadastrado com sucesso"));
             } else

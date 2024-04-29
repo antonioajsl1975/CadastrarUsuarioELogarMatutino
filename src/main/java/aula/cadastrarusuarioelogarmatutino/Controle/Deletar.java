@@ -16,9 +16,9 @@ import java.util.Set;
 public class Deletar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuarios");
+        Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuariosContextoApp");
         HttpSession session=request.getSession();
-        Usuario usuarioLogado=(Usuario) session.getAttribute("usuario");
+        Usuario usuarioLogado=(Usuario) session.getAttribute("usuarioSessao");
 
         String tid = request.getParameter("id");
         if (tid != null && !tid.isBlank()) {

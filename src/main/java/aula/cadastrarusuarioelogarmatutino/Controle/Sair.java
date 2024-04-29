@@ -17,7 +17,7 @@ public class Sair extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        HttpSession sessao=request.getSession();
-       if(sessao.getAttribute("usuario")!=null)
+       if(sessao.getAttribute("usuarioSessao")!=null)
        {
            sessao.invalidate();
            response.sendRedirect("index.jsp");

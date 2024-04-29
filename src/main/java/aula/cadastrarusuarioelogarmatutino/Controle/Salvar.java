@@ -29,9 +29,9 @@ public class Salvar extends HttpServlet {
             int id = Integer.parseInt(idStr);
 
             // Obtendo o conjunto de usuários do contexto do servlet
-            Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuarios");
+            Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuariosContextoApp");
             HttpSession sessao = request.getSession();
-            Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuario");
+            Usuario usuarioLogado = (Usuario) sessao.getAttribute("usuarioSessao");
 
             // Procurando pelo usuário com o ID correspondente
             Usuario usuarioModificado = null;
@@ -46,7 +46,6 @@ public class Salvar extends HttpServlet {
             if (usuarioModificado != null && usuarioLogado.isAdmin()) {
                 // Atualizando os dados do usuário
                 usuarioModificado.setNome(nome);
-                usuarioModificado.setTelefone(telefone);
                 usuarioModificado.setSenha(senha);
                 usuarioModificado.setAdmin(Boolean.parseBoolean(admin));
 
@@ -54,7 +53,6 @@ public class Salvar extends HttpServlet {
                 response.sendRedirect("relatorio?mensagem=" + URLEncoder.encode("Usuário atualizado com sucesso"));
             } else if (usuarioModificado != null && !usuarioLogado.isAdmin()) {
                 usuarioLogado.setNome(nome);
-                usuarioLogado.setTelefone(telefone);
                 usuarioLogado.setSenha(senha);
                 usuarioLogado.setAdmin(Boolean.parseBoolean(admin));
 

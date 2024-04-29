@@ -1,17 +1,20 @@
 package aula.cadastrarusuarioelogarmatutino.Modelo;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
     private int id;
-    private String nome,telefone,login,senha;
-    private boolean admin;
+    private String nome;
+    private  String login;
+    private String senha;
+    private boolean admin = false;
+    private List<Telefone> telefones;
 
     public Usuario(){}
-    public Usuario(int id, String nome, String telefone, String login, String senha, boolean admin) {
+    public Usuario(int id, String nome, String login, String senha, boolean admin) {
         this.id = id;
         this.nome = nome;
-        this.telefone = telefone;
         this.login = login;
         this.senha = senha;
         this.admin = admin;
@@ -31,14 +34,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getLogin() {
@@ -83,7 +78,6 @@ public class Usuario {
         return "Usuario{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
                 ", login='" + login + '\'' +
                 ", senha='" + senha + '\'' +
                 '}';

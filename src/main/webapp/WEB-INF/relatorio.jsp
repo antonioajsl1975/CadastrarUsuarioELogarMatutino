@@ -1,4 +1,5 @@
 <%@ page import="java.util.Set" %>
+<%@ page import="aula.cadastrarusuarioelogarmatutino.Modelo.Telefone" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="cabecalho.jsp" %>
 
@@ -8,7 +9,9 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Telefone</th>
+            <th>Id Telefone</th>
+            <th>Tipo</th>
+            <th>Numero</th>
             <th>Login</th>
             <th>Admin</th>
             <th>Senha</th>
@@ -18,13 +21,16 @@
         </tr>
         </thead>
         <tbody>
-        <% Set<Usuario> usuarios = (Set<Usuario>) request.getAttribute("usuarios");
-            Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+        <% Set<Usuario> usuarios = (Set<Usuario>) request.getAttribute("usuariosContextoApp");
+            Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioSessao");
+            Telefone telefone = new Telefone();
             for (Usuario u : usuarios) { %>
         <tr>
             <td><%= u.getId() %></td>
             <td><%= u.getNome() %></td>
-            <td><%= u.getTelefone() %></td>
+            <th><%= telefone.getId() %></th>
+            <th><%= telefone.getTipoTelefone() %></th>
+            <th><%= telefone.getNumero() %></th>
             <td><%= u.getLogin() %></td>
             <td><%= u.isAdmin() %></td>
             <td>
@@ -46,7 +52,6 @@
                 <form action="editar.jsp" method="post">
                     <input type="hidden" name="id" value="<%= u.getId() %>">
                     <input type="hidden" name="nome" value="<%= u.getNome() %>">
-                    <input type="hidden" name="telefone" value="<%= u.getTelefone() %>">
                     <input type="hidden" name="login" value="<%= u.getLogin() %>">
                     <input type="hidden" name="senha" value="<%= u.getSenha() %>">
                     <input type="hidden" name="admin" value="<%= u.isAdmin() %>">
@@ -62,8 +67,6 @@
                     <input type="hidden" name="id" value="<%= u.getId() %>">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" value="<%= u.getNome() %>">
-                    <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone" value="<%= u.getTelefone() %>">
                     <label for="login">Login</label>
                     <input type="text" name="login" id="login" class="form-control" placeholder="Login" value="<%= u.getLogin() %>" readonly>
                     <label for="senha">Senha</label>

@@ -13,6 +13,6 @@
     <label for="senha">Senha</label>
     <input type="password" name="senha" id="senha" placeholder="Senha" value="<%= request.getParameter("senha") %>" >
     <label for="admin">Admin</label>
-    <input type="text" name="admin" id="admin" placeholder="Admin?"></input>
+    <input type="text" name="admin" id="admin" placeholder="Admin?" value="<%= request.getParameter("isAdmin") %>"></input>
     <input type="submit" value="Salvar">
 </form>

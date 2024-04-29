@@ -22,10 +22,10 @@
     <header>
         <h1>Sistema de Login</h1>
         <%
-            if(session.getAttribute("usuario")!=null)
+            if(session.getAttribute("usuarioSessao")!=null)
             {
         %>
-            <h2>Seja bem-vindo, <%= ((Usuario)session.getAttribute("usuario")).getNome()
+            <h2>Seja bem-vindo, <%= ((Usuario)session.getAttribute("usuarioSessao")).getNome()
             %></h2>
 
         <%
@@ -36,7 +36,7 @@
         <a href="index.jsp">Home</a>
         <a href="relatorio">Relatorio</a>
         <%
-            if(session.getAttribute("usuario")!=null)
+            if(session.getAttribute("usuarioSessao")!=null)
             {
         %>
             <a href="sair">Sair</a>

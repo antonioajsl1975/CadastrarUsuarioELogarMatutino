@@ -19,14 +19,14 @@ public class Logar extends HttpServlet {
         String login=request.getParameter("login");
         String senha=request.getParameter("senha");
         HttpSession sessao=request.getSession();
-        if(sessao.getAttribute("usuario")==null) {
+        if(sessao.getAttribute("usuarioSessao")==null) {
             if (login != null && senha != null && !login.isBlank() && !senha.isBlank()) {
 
-                Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuarios");
+                Set<Usuario> usuarios = (Set<Usuario>) getServletContext().getAttribute("usuariosContextoApp");
                 boolean logou = false;
                 for (Usuario u : usuarios) {
                     if (u.getLogin().equals(login) && u.getSenha().equals(senha)) {
-                        sessao.setAttribute("usuario", u);
+                        sessao.setAttribute("usuarioSessao", u);
                         response.sendRedirect("relatorio");
                         logou = true;
                         break;
